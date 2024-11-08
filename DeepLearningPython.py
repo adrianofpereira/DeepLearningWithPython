@@ -21,6 +21,7 @@ tf.__version__
 rede_neural = Sequential([
     tf.keras.layers.InputLayer(shape =(30,)), ##shape será a quantidade de neurônios utilizados na entrada
     tf.keras.layers.Dense(units = 16, activation = 'relu', kernel_initializer = 'random_uniform'),    ##Na camada oculta utilizamos o Dense que é o neurônio de uma camada conectado a todos os neurônios de outra camada
+    tf.keras.layers.Dense(units = 16, activation = 'relu', kernel_initializer = 'random_uniform'),
     tf.keras.layers.Dense(units = 1, activation = 'sigmoid')
 ])
 
@@ -29,3 +30,21 @@ rede_neural.summary()
 rede_neural.compile(optimizer = 'adam', loss = 'binary_crossentropy', metrics = ['binary_accuracy'])
 
 rede_neural.fit(x_treinamento, y_treinamento, batch_size = 10, epochs = 100)
+
+previsoes = rede_neural.predict(x_teste)
+
+previsoes = previsoes > 0.5
+
+previsoes
+
+from sklearn.metrics import accuracy_score, confusion_matrix
+
+accuracy_score(y_teste,previsoes)
+
+confusion_matrix(y_teste,previsoes)
+
+44+85,9+5
+
+129/143, 15/143
+
+rede_neural.evaluate(x_teste, y_teste)
