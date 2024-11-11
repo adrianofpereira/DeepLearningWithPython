@@ -27,7 +27,9 @@ rede_neural = Sequential([
 
 rede_neural.summary()
 
-rede_neural.compile(optimizer = 'adam', loss = 'binary_crossentropy', metrics = ['binary_accuracy'])
+otimizador = tf.keras.optimizers.Adam(learning_rate = 0.001, clipvalue = 0.5)
+
+rede_neural.compile(optimizer = otimizador, loss = 'binary_crossentropy', metrics = ['binary_accuracy'])
 
 rede_neural.fit(x_treinamento, y_treinamento, batch_size = 10, epochs = 100)
 
