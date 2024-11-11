@@ -33,6 +33,19 @@ rede_neural.compile(optimizer = otimizador, loss = 'binary_crossentropy', metric
 
 rede_neural.fit(x_treinamento, y_treinamento, batch_size = 10, epochs = 100)
 
+pesos0 = rede_neural.layers[0].get_weights()
+pesos0
+
+len(pesos0)
+
+len(pesos0[1])
+
+pesos1 = rede_neural.layert[1].get_weights
+pesos1
+
+pesos2 = rede_neural.layert[2].get_weights
+pesos2
+
 previsoes = rede_neural.predict(x_teste)
 
 previsoes = previsoes > 0.5
