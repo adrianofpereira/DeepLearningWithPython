@@ -25,9 +25,9 @@ def criar_rede(optimizer, loss, kernel_initializer, activation, neurons):
   rede_neural.compile(optimizer = optimizer, loss = loss, metrics = ['binary_accuracy'])
   return rede_neural
 
-    rede_neural = KerasClassifier(model = criar_rede)
+rede_neural = KerasClassifier(model = criar_rede)
 
-    parametros = {
+parametros = {
     'batch_size': [10, 30],
     'epochs': [50, 100],
     'model__optimizer': ['adam', 'sgd'],
@@ -47,3 +47,14 @@ parametros = {
 }
 
 parametros
+
+grid_search = GridSearchCV(estimator = rede_neural, param_grid = parametros,
+                          scoring = 'accuracy', cv = 5)
+
+print(grid_search)
+
+melhores_parametros = grid_search.best_params_
+print(melhores_parametros)
+
+melhor_precisao = grid_search.best_score_
+print(melhor_precisao)
