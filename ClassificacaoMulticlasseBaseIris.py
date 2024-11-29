@@ -33,3 +33,16 @@ x_treinamento, x_teste, y_treinamento, y_teste= train_test_split(x, y, test_size
 x_treinamento.shape, x_teste.shape
 
 y_treinamento.shape, y_teste.shape
+
+rede_neural = Sequential([
+    tf.keras.layers.InputLayer(shape = (4,)),
+    tf.keras.layers.Dense(units = 4, activation = 'relu'),
+    tf.keras.layers.Dense(units = 4, activation = 'relu'),
+    tf.keras.layers.Dense(units = 3, activation = 'softmax')
+])
+
+rede_neural.summary()
+
+rede_neural.compile(optimizer = 'adam', loss = 'categorical_crossentropy', metrics = ['categorical_accuracy'])
+
+rede_neural.fit(x_treinamento, y_treinamento, batch_size = 10, epochs = 1000)
