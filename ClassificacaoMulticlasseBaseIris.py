@@ -46,3 +46,25 @@ rede_neural.summary()
 rede_neural.compile(optimizer = 'adam', loss = 'categorical_crossentropy', metrics = ['categorical_accuracy'])
 
 rede_neural.fit(x_treinamento, y_treinamento, batch_size = 10, epochs = 1000)
+
+rede_neural.evaluate(x_teste, y_teste)
+
+previsoes = rede_neural.predict(x_teste)
+print(previsoes)
+
+previsoes = previsoes > 0.5
+print(previsoes)
+
+y_teste2 = [np.argmax(t) for t in y_teste]
+print(y_teste2)
+
+previsoes2 = [np.argmax(t) for t in previsoes]
+print(previsoes2)
+
+from sklearn.metrics import accuracy_score
+
+accuracy_score(y_teste2, previsoes2)
+
+# 0 setosa, 1 versicolor, 2 virginica
+
+confusion_matrix(y_teste2, previsoes2)
